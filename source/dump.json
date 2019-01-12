@@ -388,7 +388,7 @@
     "pk": 1,
     "fields": {
         "password": "pbkdf2_sha256$120000$OAEFcYirLDkJ$34HIr7G5tJ/IIwNzbQgq3Z22cGEYMNiVtSe2M0SC8NI=",
-        "last_login": "2019-01-12T06:11:28.465Z",
+        "last_login": "2019-01-12T12:26:04.442Z",
         "is_superuser": true,
         "username": "admin",
         "first_name": "",
@@ -424,7 +424,7 @@
     "pk": 3,
     "fields": {
         "password": "pbkdf2_sha256$120000$i8pE43D98oGv$t+U+7KWEZCzxfPZqPLLCPXFlQgfJ/caK7cc9LmhFo+8=",
-        "last_login": null,
+        "last_login": "2019-01-12T13:35:44.221Z",
         "is_superuser": false,
         "username": "Archer",
         "first_name": "",
@@ -432,7 +432,7 @@
         "email": "",
         "is_staff": false,
         "is_active": true,
-        "date_joined": "2019-01-12T07:06:09.409Z",
+        "date_joined": "2019-01-12T07:06:09Z",
         "groups": [],
         "user_permissions": []
     }
@@ -492,13 +492,49 @@
     }
 },
 {
+    "model": "webapp.post",
+    "pk": 11,
+    "fields": {
+        "author": [
+            "admin"
+        ],
+        "title": "sdvsdvd",
+        "text": "sdvdsvdv",
+        "date_created": "2019-01-12T11:29:03.655Z"
+    }
+},
+{
+    "model": "webapp.post",
+    "pk": 12,
+    "fields": {
+        "author": [
+            "admin"
+        ],
+        "title": "sdvsdvds",
+        "text": "sdvdsvsdv",
+        "date_created": "2019-01-12T11:29:08.057Z"
+    }
+},
+{
+    "model": "webapp.post",
+    "pk": 13,
+    "fields": {
+        "author": [
+            "admin"
+        ],
+        "title": "test",
+        "text": "test1",
+        "date_created": "2019-01-12T13:08:41.898Z"
+    }
+},
+{
     "model": "webapp.userinfo",
     "pk": 1,
     "fields": {
         "user": [
             "Mr_tester_2000"
         ],
-        "phone": "+996700300214",
+        "phone": "+99670030021",
         "photo": "",
         "friend": [
             [
@@ -519,6 +555,9 @@
         "friend": [
             [
                 "Mr_tester_2000"
+            ],
+            [
+                "\u0421\u043a\u0430\u0440\u043b"
             ]
         ]
     }
