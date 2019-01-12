@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block title %}Статья{% endblock %}
+{% block content %}
+    <h1>{{ post.title }} ({{ post.date_created }})</h1>
+    <p>{{ post.text }}</p>
+    <ul>
+    {% if user.is_authenticated %}
+        {% if request.user == post.author %}
+            <li>
+                <a href="{% url 'webapp:post_update' post.pk %}">Редактировать</a>
+            </li>
+            <li>
+                <a href="{% url 'webapp:post_delete' post.pk %}" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal{{ post.pk }}">Удалить</a>
+            </li>
+        <div class="modal fade" id="exampleModal{{ post.pk }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Удаление статьи!</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        Вы хотите удалить статью - {{ post.title }}?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Нет</button>
+                        <a href="{% url 'webapp:post_delete' post.pk %}" class="btn btn-danger">Да</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    {% endif %}
+    </ul>
+
+{% endblock %}

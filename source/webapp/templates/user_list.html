@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block title %}Пользователи{% endblock %}
+{% block content %}
+    {% for info in userinfo_list %}
+        <div class="list-group mt-4">
+          <a href="{% url 'webapp:user_detail' info.pk %}" class="list-group-item list-group-item-action bg-secondary text-white">{{ info.user.username }}</a>
+        </div>
+    {% endfor %}
+{% endblock %}

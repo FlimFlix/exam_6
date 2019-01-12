@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% block title %}Личная страница{% endblock %}
+{% block content %}
+
+    <div class="text-center rounded-circle alert alert-light" role="alert">
+    {% if user.is_authenticated %}
+        {% if request.user == userinfo.user %}
+        <a href="{% url 'webapp:user_update' userinfo.pk %}">Личный кабинет</a>
+        {% endif %}
+    {% endif %}
+        <h1>{{ userinfo.user.username}}</h1>
+        <div>
+            <div id="number" data-last="Показать номер" class="dispay-none"><span>{{ userinfo.phone }}</span></div>
+            {% if userinfo.photo %}
+                <img src="{{ userinfo.photo.url }}" alt="аватарка" style="width: 25%; height: auto" >
+            {% endif %}
+        </div>
+    </div>
+    <div id="accordion">
+      <div class="card">
+        <div class="card-header" id="headingOne">
+          <h5 class="mb-0">
+            <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                Друзья пользователя
+            </button>
+          </h5>
+        </div>
+
+        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+          <div class="card-body">
+            {% for friend in userinfo.friend.all %}
+                <hr>
+                <h3>{{ friend }} </h3>
+                <hr>
+                {% empty %}
+                    <h2>Нет друзей</h2>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    <div class="card">
+        <div class="card-header" id="headingTwo">
+          <h5 class="mb-0">
+            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+              Статьи пользователя
+            </button>
+          </h5>
+        </div>
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+          <div class="card-body">
+              {% for article in userinfo.user.article.all %}
+                  <hr>
+                <h2>{{ article.title }}({{ article.date_created }})</h2>
+                <h4>{{ article.text }}</h4>
+                  <hr>
+                  {% empty %}
+                    <h2>Нет статей в данном разделе</h2>
+              {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <script>
+        $('#number').toggle(function() {
+            $(this).find('span').text( $(this).data('last') );
+        },function() {
+            $(this).find('span').text( '{{ userinfo.phone }}' );
+        });
+    </script>
+{% endblock %}
